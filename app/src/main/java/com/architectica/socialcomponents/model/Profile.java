@@ -31,10 +31,21 @@ public class Profile implements Serializable, LazyLoading {
     private long likesCount;
     private String registrationToken;
     private ItemType itemType;
+    private String usertype;
+    private String userbio;
+    private String useruri;
 
     public Profile() {
         // Default constructor required for calls to DataSnapshot.getValue(Profile.class)
     }
+    public String getUserbio(){return userbio;}
+    public String getUseruri(){return useruri;}
+    public void setUseruri(String useruri){this.useruri=useruri;}
+    public void setUserbio(String usertbio){this.userbio=userbio;}
+
+
+    public String getUsertype(){return usertype;}
+    public void setUsertype(String usertype1){this.usertype=usertype1;}
 
     public Profile(String id) {
         this.id = id;

@@ -39,21 +39,41 @@
                     android:visibility="visible" />
 
             </RelativeLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/nameEditText"/>
 
-                <EditText
-                    android:id="@+id/nameEditText"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_name"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:maxLines="1"/>
+                    android:orientation="horizontal">
+                    <AutoCompleteTextView
+                        android:id="@+id/usertype1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Startup"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
+                <EditText
+                    android:id="@+id/userbio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:hint="Write a short bio"/>
+                <EditText
+                    android:id="@+id/userurl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri"/>
+            </LinearLayout>
 
-            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
     </ScrollView>

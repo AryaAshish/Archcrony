@@ -40,7 +40,6 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
     protected EditProfilePresenter(Context context) {
         super(context);
         profileManager = ProfileManager.getInstance(context.getApplicationContext());
-
     }
 
     public void loadProfile() {
@@ -52,7 +51,9 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
                 ifViewAttached(view -> {
                     if (profile != null) {
                         view.setName(profile.getUsername());
-
+                        view.setUsertype(profile.getUsertype());
+                        view.setBio(profile.getUserbio());
+                        view.setUseruri(profile.getUseruri());
                         if (profile.getPhotoUrl() != null) {
                             view.setProfilePhoto(profile.getPhotoUrl());
                         }
@@ -69,8 +70,10 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
         if (checkInternetConnection()) {
             ifViewAttached(view -> {
                 view.setNameError(null);
-
+                String usertype = view.getUsertypeText().trim();
                 String name = view.getNameText().trim();
+                String bio = view.getBioText().trim();
+                String useruri = view.getUseruriText().trim();
                 boolean cancel = false;
 
                 if (TextUtils.isEmpty(name)) {
@@ -83,7 +86,10 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
 
                 if (!cancel) {
                     view.showProgress();
+                    profile.setUsertype(usertype);
                     profile.setUsername(name);
+                    profile.setUserbio(bio);
+                    profile.setUseruri(useruri);
                     createOrUpdateProfile(imageUri);
                 }
             });

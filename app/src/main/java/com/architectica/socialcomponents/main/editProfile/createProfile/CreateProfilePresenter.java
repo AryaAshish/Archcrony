@@ -47,6 +47,7 @@ class CreateProfilePresenter extends EditProfilePresenter<CreateProfileView> {
                 view.hideLocalProgress();
                 view.setDefaultProfilePhoto();
             }
+
         });
     }
 

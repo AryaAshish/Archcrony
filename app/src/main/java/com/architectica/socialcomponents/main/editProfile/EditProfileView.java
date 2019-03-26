@@ -24,10 +24,16 @@ import com.architectica.socialcomponents.main.pickImageBase.PickImageView;
 
 public interface EditProfileView extends PickImageView {
     void setName(String username);
-
+    void setUsertype(String usertype);
     void setProfilePhoto(String photoUrl);
+    void setUseruri(String Useruri);
+    void setBio(String bio);
 
     String getNameText();
+    String getUseruriText();
+    String getBioText();
+
+    String getUsertypeText();
 
     void setNameError(String string);
 }

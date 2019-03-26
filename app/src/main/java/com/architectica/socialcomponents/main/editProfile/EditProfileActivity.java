@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -43,7 +44,8 @@ public class EditProfileActivity<V extends EditProfileView, P extends EditProfil
     private static final String TAG = EditProfileActivity.class.getSimpleName();
 
     // UI references.
-    private EditText nameEditText;
+    private EditText nameEditText,usertype1,uriEditText,bioEditText;
+
     protected ImageView imageView;
     private ProgressBar avatarProgressBar;
 
@@ -58,10 +60,12 @@ public class EditProfileActivity<V extends EditProfileView, P extends EditProfil
         avatarProgressBar = findViewById(R.id.avatarProgressBar);
         imageView = findViewById(R.id.imageView);
         nameEditText = findViewById(R.id.nameEditText);
-
+        usertype1 = findViewById(R.id.usertype1);
+        uriEditText=findViewById(R.id.userurl);
+        bioEditText=findViewById(R.id.userbio);
         imageView.setOnClickListener(this::onSelectImageClick);
-
         initContent();
+
     }
 
     @NonNull
@@ -101,6 +105,11 @@ public class EditProfileActivity<V extends EditProfileView, P extends EditProfil
     }
 
     @Override
+    public void setUsertype(String usertype) {
+         usertype1.setText(usertype);
+    }
+
+    @Override
     public void setName(String username) {
         nameEditText.setText(username);
     }
@@ -123,8 +132,33 @@ public class EditProfileActivity<V extends EditProfileView, P extends EditProfil
     }
 
     @Override
+    public void setUseruri(String Useruri) {
+        uriEditText.setText(Useruri);
+    }
+
+    @Override
+    public void setBio(String bio) {
+       bioEditText.setText(bio);
+    }
+
+    @Override
+    public String getUsertypeText() {
+        return usertype1.getText().toString();
+    }
+
+    @Override
     public String getNameText() {
         return nameEditText.getText().toString();
+    }
+
+    @Override
+    public String getUseruriText() {
+        return bioEditText.getText().toString();
+    }
+
+    @Override
+    public String getBioText() {
+        return bioEditText.getText().toString();
     }
 
     @Override
