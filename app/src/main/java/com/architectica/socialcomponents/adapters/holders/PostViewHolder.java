@@ -19,9 +19,12 @@ package com.architectica.socialcomponents.adapters.holders;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -112,9 +115,22 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                 onClickListener.onAuthorClick(getAdapterPosition(), v);
             }
         });
+
     }
 
     public void bindData(Post post) {
+
+        if (post.getImageTitle().equals("")){
+
+            postImageView.setVisibility(View.GONE);
+
+        }
+        else {
+
+            postImageView.setVisibility(View.VISIBLE);
+            postManager.loadImageMediumSize(GlideApp.with(baseActivity), post.getImageTitle(), postImageView);
+
+        }
 
         likeController = new LikeController(context, post, likeCounterTextView, likesImageView, true);
 
@@ -128,8 +144,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
         CharSequence date = FormatterUtil.getRelativeTimeSpanStringShort(context, post.getCreatedDate());
         dateTextView.setText(date);
-
-        postManager.loadImageMediumSize(GlideApp.with(baseActivity), post.getImageTitle(), postImageView);
 
         if (post.getAuthorId() != null) {
             profileManager.getProfileSingleValue(post.getAuthorId(), createProfileChangeListener(authorImageView));

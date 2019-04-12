@@ -107,4 +107,26 @@ public class SearchUsersPresenter extends BasePresenter<SearchUsersView> {
         }
     }
 
+    public void searchBySkill(String searchText) {
+        if (checkInternetConnection()) {
+            ifViewAttached(SearchUsersView::showLocalProgress);
+            profileManager.searchBySkill(searchText, list -> {
+                ifViewAttached(view -> {
+                    view.hideLocalProgress();
+                    view.onSearchResultsReady(list);
+
+                    if (list.isEmpty()) {
+                        view.showEmptyListLayout();
+                    }
+                });
+
+                LogUtil.logDebug(TAG, "search text: " + searchText);
+                LogUtil.logDebug(TAG, "found items count: " + list.size());
+            });
+        } else {
+            ifViewAttached(SearchUsersView::hideLocalProgress);
+        }
+    }
+
+
 }

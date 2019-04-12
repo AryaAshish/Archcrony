@@ -45,8 +45,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.architectica.socialcomponents.R;
@@ -146,6 +148,7 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
         dateTextView = findViewById(R.id.dateTextView);
         commentsProgressBar = findViewById(R.id.commentsProgressBar);
         warningCommentsTextView = findViewById(R.id.warningCommentsTextView);
+
         sendButton = findViewById(R.id.sendButton);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isAuthorAnimationRequired) {
@@ -330,6 +333,14 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
 
     @Override
     public void openImageDetailScreen(String imageTitle) {
+
+        if (imageTitle.equals("")){
+
+            Toast.makeText(this, "No image for this post", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+
         Intent intent = new Intent(this, ImageDetailActivity.class);
         intent.putExtra(ImageDetailActivity.IMAGE_TITLE_EXTRA_KEY, imageTitle);
         startActivity(intent);
@@ -363,10 +374,21 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
 
     @Override
     public void loadPostDetailImage(String imageTitle) {
-        postManager.loadImageMediumSize(GlideApp.with(this), imageTitle, postImageView, () -> {
-            scheduleStartPostponedTransition(postImageView);
-            progressBar.setVisibility(View.GONE);
-        });
+
+        if (imageTitle.equals("")){
+
+            postImageView.setImageResource(R.drawable.noimage);
+
+        }
+        else {
+
+            postManager.loadImageMediumSize(GlideApp.with(this), imageTitle, postImageView, () -> {
+                scheduleStartPostponedTransition(postImageView);
+                progressBar.setVisibility(View.GONE);
+            });
+
+        }
+
     }
 
     @Override

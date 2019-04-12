@@ -252,6 +252,30 @@ public class ProfileInteractor {
         return valueEventListener;
     }
 
+    public ValueEventListener searchProfilesBySkill(String searchText, OnDataChangedListener<Profile> onDataChangedListener) {
+        DatabaseReference reference = databaseHelper.getDatabaseReference().child(DatabaseHelper.PROFILES_DB_KEY);
+        ValueEventListener valueEventListener = getSearchQuery(reference, "skill", searchText).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Profile> list = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Profile profile = snapshot.getValue(Profile.class);
+                    list.add(profile);
+                }
+                onDataChangedListener.onListChanged(list);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                LogUtil.logError(TAG, "searchProfiles(), onCancelled", new Exception(databaseError.getMessage()));
+            }
+        });
+
+        databaseHelper.addActiveListener(valueEventListener, reference);
+        return valueEventListener;
+    }
+
+
     private Query getSearchQuery(DatabaseReference databaseReference, String childOrderBy, String searchText) {
         return databaseReference
                 .orderByChild(childOrderBy)

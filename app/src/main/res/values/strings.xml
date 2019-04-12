@@ -1,10 +1,5 @@
-<!--
-
-  ~
-  -->
-
 <resources>
-    <string name="app_name">ARCHcrony</string>
+    <string name="app_name">Rift</string>
     <string name="label_create_post_activity">Create post</string>
     <string name="label_post_detail_activity">Post detail</string>
     <string name="label_image_detail_activity">Image</string>
@@ -15,10 +10,25 @@
     <string name="title_activity_edit_post">Edit post</string>
     <string name="title_activity_following_posts">Following posts</string>
 
+    <string name="text_home">Home Fragment</string>
+
+    <string name="text_notifications">Notifications Fragment</string>
+
+    <string name="text_search">Search Fragment</string>
+
+    <string name="menu_home">Home</string>
+
+    <string name="menu_profile">Profile</string>
+
+    <string name="menu_notifications">Notifications</string>
+
     <string name="text_take_photo">Take photo</string>
     <string name="text_pick_photo">Pick from Gallery</string>
     <string name="button_title_cancel">Cancel</string>
     <string name="button_ok">OK</string>
+
+    <string name="channel_name">Archcrony</string>
+    <string name="channel_description">Archcrony notifications</string>
 
     <string name="hint_title">Title</string>
     <string name="hint_description">Description</string>
@@ -37,6 +47,7 @@
     <string name="warning_empty_description">Description is required</string>
     <string name="error_post_title_length">Max length of the title should be less than 255 symbols</string>
     <string name="error_fail_remove_post">Fail to remove post</string>
+    <string name="error_skill">Entered skill not found.Try another</string>
     <string name="message_post_was_removed">Post was removed</string>
     <string name="error_fail_update_post">Fail to update post</string>
     <string name="error_post_was_removed">Post was removed</string>
@@ -166,9 +177,11 @@
     <string name="search_hint">Search …</string>
     <string name="posts_tab_title">Posts</string>
     <string name="users_tab_title">Users</string>
+    <string name="skills_tab_title">Skills</string>
     <string name="empty_posts_search_message">No posts found</string>
     <string name="empty_user_search_message">No users found</string>
 
+    <string name="iv_card_content_description_image">Image of the news response</string>
 
     <!--Firebase errors-->
     <string name="permission_denied_error">Please check your rules to access the Firebase Realtime Database</string>
@@ -176,7 +189,6 @@
     <!--Notifications-->
     <string name="new_like_channel_name">New Like</string>
     <string name="new_comment_channel_name">New Comment</string>
-
 
 
 </resources>

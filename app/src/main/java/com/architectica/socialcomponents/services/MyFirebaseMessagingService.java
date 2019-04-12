@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.NotificationCompat;
@@ -42,6 +43,8 @@ import com.architectica.socialcomponents.managers.PostManager;
 import com.architectica.socialcomponents.utils.GlideApp;
 import com.architectica.socialcomponents.utils.ImageUtil;
 import com.architectica.socialcomponents.utils.LogUtil;
+
+import static android.os.Build.ID;
 
 /**
  * Created by alexey on 13.04.17.
@@ -63,6 +66,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String ACTION_TYPE_NEW_LIKE = "new_like";
     private static final String ACTION_TYPE_NEW_COMMENT = "new_comment";
     private static final String ACTION_TYPE_NEW_POST = "new_post";
+    private static final String ACTION_TYPE_NEW_ADMIN_NOTIFICATION = "new_admin_notification";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -88,7 +92,46 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             case ACTION_TYPE_NEW_POST:
                 handleNewPostCreatedAction(remoteMessage);
                 break;
+            case ACTION_TYPE_NEW_ADMIN_NOTIFICATION:
+                adminNotification(remoteMessage);
+                break;
         }
+    }
+
+    private void adminNotification(RemoteMessage remoteMessage){
+
+        //create a notification channel for android version greater then oreo
+
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        String notificationTitle = remoteMessage.getData().get(TITLE_KEY);
+        String notificationBody = remoteMessage.getData().get(BODY_KEY);
+        String click_action = remoteMessage.getNotification().getClickAction();
+
+        Intent intent=new Intent(click_action);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
+        NotificationCompat.Builder notificationBuilder=new NotificationCompat.Builder(this);
+        notificationBuilder.setContentTitle(notificationTitle);
+        notificationBuilder.setContentText(notificationBody);
+        notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        notificationBuilder.setAutoCancel(true);
+        notificationBuilder.setContentIntent(pendingIntent);
+        NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,notificationBuilder.build());
+
     }
 
     private void handleNewPostCreatedAction(RemoteMessage remoteMessage) {

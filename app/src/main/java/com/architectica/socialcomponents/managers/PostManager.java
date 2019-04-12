@@ -76,6 +76,10 @@ public class PostManager extends FirebaseListenersManager {
         postInteractor.getPostList(onDataChangedListener, date);
     }
 
+    public void getAdminPostsList(OnPostListChangedListener<Post> onDataChangedListener, long date) {
+        postInteractor.getAdminPostList(onDataChangedListener, date);
+    }
+
     public void getPostsListByUser(OnDataChangedListener<Post> onDataChangedListener, String userId) {
         postInteractor.getPostListByUser(onDataChangedListener, userId);
     }
@@ -91,6 +95,12 @@ public class PostManager extends FirebaseListenersManager {
 
     public void createOrUpdatePostWithImage(Uri imageUri, final OnPostCreatedListener onPostCreatedListener, final Post post) {
         postInteractor.createOrUpdatePostWithImage(imageUri, onPostCreatedListener, post);
+    }
+
+    public void createPost(final OnPostCreatedListener onPostCreatedListener, final Post post){
+
+        postInteractor.createPost(onPostCreatedListener, post);
+
     }
 
     public void removePost(final Post post, final OnTaskCompleteListener onTaskCompleteListener) {

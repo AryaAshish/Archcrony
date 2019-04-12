@@ -20,6 +20,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 import com.architectica.socialcomponents.enums.ItemType;
 
 import java.io.Serializable;
+import java.util.List;
 
 @IgnoreExtraProperties
 public class Profile implements Serializable, LazyLoading {
@@ -34,14 +35,27 @@ public class Profile implements Serializable, LazyLoading {
     private String usertype;
     private String userbio;
     private String useruri;
+    private String phoneNumber;
+    private String status;
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    private String skill;
 
     public Profile() {
         // Default constructor required for calls to DataSnapshot.getValue(Profile.class)
     }
     public String getUserbio(){return userbio;}
     public String getUseruri(){return useruri;}
+
     public void setUseruri(String useruri){this.useruri=useruri;}
-    public void setUserbio(String usertbio){this.userbio=userbio;}
+    public void setUserbio(String userbio){this.userbio=userbio;}
 
 
     public String getUsertype(){return usertype;}
@@ -112,4 +126,22 @@ public class Profile implements Serializable, LazyLoading {
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
 }

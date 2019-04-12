@@ -50,6 +50,7 @@ public class CreateProfileActivity extends EditProfileActivity<CreateProfileView
 
     @Override
     public void setDefaultProfilePhoto() {
+
         imageView.setImageResource(R.drawable.ic_stub);
     }
 

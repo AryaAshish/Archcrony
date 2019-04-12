@@ -35,6 +35,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -76,6 +77,9 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
 
     // UI references.
     private TextView nameEditText;
+    private TextView bioTextView;
+    private TextView statusTextView;
+    private TextView skillTextView;
     private ImageView imageView;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
@@ -118,6 +122,9 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
         progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.imageView);
         nameEditText = findViewById(R.id.nameEditText);
+        bioTextView = findViewById(R.id.bio);
+        statusTextView = findViewById(R.id.status);
+        skillTextView = findViewById(R.id.skill);
         postsCounterTextView = findViewById(R.id.postsCounterTextView);
         likesCountersTextView = findViewById(R.id.likesCountersTextView);
         followersCounterTextView = findViewById(R.id.followersCounterTextView);
@@ -257,14 +264,25 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
 
             View imageView = v.findViewById(R.id.postImageView);
 
-            ActivityOptions options = ActivityOptions.
-                    makeSceneTransitionAnimation(ProfileActivity.this,
-                            new android.util.Pair<>(imageView, getString(R.string.post_image_transition_name))
-                    );
-            startActivityForResult(intent, PostDetailsActivity.UPDATE_POST_REQUEST, options.toBundle());
+            if (imageView.getVisibility() != View.GONE){
+
+                ActivityOptions options = ActivityOptions.
+                        makeSceneTransitionAnimation(ProfileActivity.this,
+                                new android.util.Pair<>(imageView, getString(R.string.post_image_transition_name))
+                        );
+                startActivityForResult(intent, PostDetailsActivity.UPDATE_POST_REQUEST, options.toBundle());
+
+            }
+            else {
+
+                startActivityForResult(intent, PostDetailsActivity.UPDATE_POST_REQUEST);
+
+            }
+
         } else {
             startActivityForResult(intent, PostDetailsActivity.UPDATE_POST_REQUEST);
         }
+
     }
 
     private void scheduleStartPostponedTransition(final ImageView imageView) {
@@ -304,6 +322,34 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
     @Override
     public void setProfileName(String username) {
         nameEditText.setText(username);
+    }
+
+    @Override
+    public void setBio(String bio) {
+        bioTextView.setText(bio);
+    }
+
+    @Override
+    public void setStatus(String status) {
+        if ("Not Hired".equals(status)){
+
+            statusTextView.setText(status);
+            statusTextView.setTextColor(getResources().getColor(R.color.red));
+
+        }
+        else if ("Hired".equals(status)){
+
+            statusTextView.setText(status);
+            statusTextView.setTextColor(getResources().getColor(R.color.green));
+
+        }
+    }
+
+    @Override
+    public void setSkill(String skill) {
+
+        skillTextView.setText(skill);
+
     }
 
     @Override

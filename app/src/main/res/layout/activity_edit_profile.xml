@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="@dimen/intrinsic_padding"
@@ -42,7 +43,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/nameEditText"/>
+                android:id="@+id/nameEditText"
+                android:hint="Name"/>
 
 
             <LinearLayout
@@ -59,21 +61,153 @@
                         android:layout_height="wrap_content"
                         android:text="Startup"
                         android:layout_weight="1"
+                        android:hint="User Type"
                         />
                 </LinearLayout>
+
+                <AutoCompleteTextView
+                    android:id="@+id/startUpType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:hint="Start up type"
+                    android:visibility="gone"/>
+
                 <EditText
                     android:id="@+id/userbio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
                     android:hint="Write a short bio"/>
-                <EditText
-                    android:id="@+id/userurl"
+
+                <AutoCompleteTextView
+                    android:id="@+id/skill"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textUri"/>
-            </LinearLayout>
+                    android:inputType="textMultiLine"
+                    android:hint="Skill"/>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/linear_layout_in_activity_first_run_second_background">
+
+                    <EditText
+                        android:id="@+id/userurl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textUri"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:textSize="15dp"
+                        android:background="@android:color/transparent"
+                        android:hint="User URL"/>
+
+                    <Button
+                        android:id="@+id/button_browse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BROWSE"
+                        android:layout_alignParentRight="true"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/verify_background"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/user_input_in_frsa"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/linear_layout_in_activity_first_run_second_background">
+
+                    <TextView
+                        android:id="@+id/country_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:text="+91"/>
+
+                    <EditText
+                        android:id="@+id/editText_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:background="@android:color/transparent"
+                        android:paddingRight="10sp"
+                        android:textSize="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/country_code"
+                        android:hint="Mobile Number"/>
+
+                    <Button
+                        android:id="@+id/button_verify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/verify_background"
+                        android:text="VERIFY"
+                        android:textColor="#FFFFFF"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/verifyLayout"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="30dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/six_digit_linear_layout_background">
+                        <EditText
+                            android:id="@+id/edit_text_6_digit_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:hint="Enter 6 digit code"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="30dp"
+                            android:inputType="number"
+                            android:background="@drawable/enter_code_background"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/button_background"
+                        android:backgroundTint="#4CAF50"
+                        android:text="VERIFY"
+                        android:id="@+id/verifyPhone"
+                        android:textColor="#FFFFFF" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -18,6 +18,8 @@ package com.architectica.socialcomponents.main.editProfile;
 
 import com.architectica.socialcomponents.main.pickImageBase.PickImageView;
 
+import java.util.List;
+
 /**
  * Created by Alexey on 03.05.18.
  */
@@ -28,12 +30,16 @@ public interface EditProfileView extends PickImageView {
     void setProfilePhoto(String photoUrl);
     void setUseruri(String Useruri);
     void setBio(String bio);
+    void setPhoneNumber(String number);
+    void setSkill(String userType,String skill);
 
     String getNameText();
     String getUseruriText();
     String getBioText();
-
+    String getNumber();
     String getUsertypeText();
+    String getSkill();
 
     void setNameError(String string);
+    void setSkillError(String string);
 }

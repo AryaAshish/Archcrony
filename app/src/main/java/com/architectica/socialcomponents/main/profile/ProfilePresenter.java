@@ -168,13 +168,14 @@ class ProfilePresenter extends BasePresenter<ProfileView> {
                 profile = obj;
                 ifViewAttached(view -> {
                     view.setProfileName(profile.getUsername());
-
+                    view.setBio(profile.getUserbio());
+                    view.setStatus(profile.getStatus());
+                    view.setSkill(profile.getSkill());
                     if (profile.getPhotoUrl() != null) {
                         view.setProfilePhoto(profile.getPhotoUrl());
                     } else {
                         view.setDefaultProfilePhoto();
                     }
-
                     int likesCount = (int) profile.getLikesCount();
                     String likesLabel = context.getResources().getQuantityString(R.plurals.likes_counter_format, likesCount, likesCount);
                     view.updateLikesCounter(buildCounterSpannable(likesLabel, likesCount));
@@ -190,7 +191,6 @@ class ProfilePresenter extends BasePresenter<ProfileView> {
             view.showLikeCounter(true);
             view.showPostCounter(true);
             view.hideLoadingPostsProgress();
-
 
         });
         }

@@ -19,6 +19,7 @@ package com.architectica.socialcomponents.main.editProfile;
 import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.architectica.socialcomponents.R;
 import com.architectica.socialcomponents.main.base.BaseView;
@@ -27,6 +28,10 @@ import com.architectica.socialcomponents.managers.ProfileManager;
 import com.architectica.socialcomponents.managers.listeners.OnObjectChangedListenerSimple;
 import com.architectica.socialcomponents.model.Profile;
 import com.architectica.socialcomponents.utils.ValidationUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Alexey on 03.05.18.
@@ -57,6 +62,8 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
                         if (profile.getPhotoUrl() != null) {
                             view.setProfilePhoto(profile.getPhotoUrl());
                         }
+                        view.setPhoneNumber(profile.getPhoneNumber());
+                        view.setSkill(profile.getUsertype(),profile.getSkill());
                     }
 
                     view.hideProgress();
@@ -74,13 +81,21 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
                 String name = view.getNameText().trim();
                 String bio = view.getBioText().trim();
                 String useruri = view.getUseruriText().trim();
+                String number = view.getNumber().trim();
+                String skill = view.getSkill();
+
                 boolean cancel = false;
+
+                String[] skillTypes = {"Android Development(Java)","Android Development(Kotlin)","Web Development(MEAN Stack)","Web Development(MARN Stack)","Web Development","Business Development","Content Writing","Campus Ambassadors","IOS Development","Hybrid App Development"};
 
                 if (TextUtils.isEmpty(name)) {
                     view.setNameError(context.getString(R.string.error_field_required));
                     cancel = true;
                 } else if (!ValidationUtil.isNameValid(name)) {
                     view.setNameError(context.getString(R.string.error_profile_name_length));
+                    cancel = true;
+                } else if (!Arrays.asList(skillTypes).contains(skill)){
+                    view.setSkillError(context.getString(R.string.error_skill));
                     cancel = true;
                 }
 
@@ -90,6 +105,9 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
                     profile.setUsername(name);
                     profile.setUserbio(bio);
                     profile.setUseruri(useruri);
+                    profile.setPhoneNumber(number);
+                    profile.setStatus("Not Hired");
+                    profile.setSkill(skill);
                     createOrUpdateProfile(imageUri);
                 }
             });
@@ -110,7 +128,12 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
     }
 
     protected void onProfileUpdatedSuccessfully() {
-        ifViewAttached(BaseView::finish);
+
+        ifViewAttached(
+
+                BaseView::finish
+        );
+
     }
 
 }

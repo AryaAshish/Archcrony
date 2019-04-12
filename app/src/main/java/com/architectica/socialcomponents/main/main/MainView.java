@@ -18,21 +18,13 @@ package com.architectica.socialcomponents.main.main;
 
 import android.view.View;
 
-import com.architectica.socialcomponents.main.base.BaseView;
+import com.architectica.socialcomponents.main.base.BaseFragmentView;
 import com.architectica.socialcomponents.model.Post;
 
 /**
  * Created by Alexey on 03.05.18.
  */
 
-public interface MainView extends BaseView {
-    void openCreatePostActivity();
-    void hideCounterView();
-    void openPostDetailsActivity(Post post, View v);
-    void showFloatButtonRelatedSnackBar(int messageId);
-    void openProfileActivity(String userId, View view);
-    void refreshPostList();
-    void removePost();
-    void updatePost();
-    void showCounterView(int count);
+public interface MainView extends BaseFragmentView {
+
 }

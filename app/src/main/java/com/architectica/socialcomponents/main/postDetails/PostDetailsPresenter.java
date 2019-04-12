@@ -61,6 +61,7 @@ class PostDetailsPresenter extends BasePresenter<PostDetailsView> {
     }
 
     public void loadPost(String postId) {
+
         postManager.getPost(context, postId, new OnPostChangedListener() {
             @Override
             public void onObjectChanged(Post obj) {

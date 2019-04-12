@@ -48,6 +48,12 @@ public interface ProfileView extends BaseView {
 
     void setProfileName(String username);
 
+    void setBio(String bio);
+
+    void setStatus(String status);
+
+    void setSkill(String skill);
+
     void setProfilePhoto(String photoUrl);
 
     void setDefaultProfilePhoto();

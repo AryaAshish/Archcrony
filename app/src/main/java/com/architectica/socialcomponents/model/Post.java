@@ -134,6 +134,11 @@ public class Post implements Serializable, LazyLoading {
     }
 
     public Map<String, Object> toMap() {
+
+        if (imageTitle == null){
+            imageTitle = "";
+        }
+
         HashMap<String, Object> result = new HashMap<>();
 
         result.put("title", title);

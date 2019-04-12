@@ -108,6 +108,13 @@ public class ProfileManager extends FirebaseListenersManager {
         addListenerToMap(context, valueEventListener);
     }
 
+    public void searchBySkill(String searchText, OnDataChangedListener<Profile> onDataChangedListener) {
+        closeListeners(context);
+        ValueEventListener valueEventListener = profileInteractor.searchProfilesBySkill(searchText, onDataChangedListener);
+        addListenerToMap(context, valueEventListener);
+    }
+
+
     public void addRegistrationToken(String token, String userId) {
         profileInteractor.addRegistrationToken(token, userId);
     }

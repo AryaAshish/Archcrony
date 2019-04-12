@@ -46,12 +46,23 @@ public class CreatePostPresenter extends BaseCreatePostPresenter<CreatePostView>
             post.setTitle(title);
             post.setDescription(description);
             post.setAuthorId(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            postManager.createOrUpdatePostWithImage(view.getImageUri(), this, post);
+
+            if (view.getImageUri() != null){
+
+                postManager.createOrUpdatePostWithImage(view.getImageUri(), this, post);
+
+            }
+            else {
+
+                postManager.createPost(this,post);
+
+            }
+
         });
     }
 
     @Override
     protected boolean isImageRequired() {
-        return true;
+        return false;
     }
 }

@@ -32,6 +32,7 @@ import com.architectica.socialcomponents.R;
 import com.architectica.socialcomponents.adapters.viewPager.TabsPagerAdapter;
 import com.architectica.socialcomponents.main.base.BaseActivity;
 import com.architectica.socialcomponents.main.search.posts.SearchPostsFragment;
+import com.architectica.socialcomponents.main.search.users.SearchUsersBySkillsFragment;
 import com.architectica.socialcomponents.main.search.users.SearchUsersFragment;
 import com.architectica.socialcomponents.utils.LogUtil;
 
@@ -86,6 +87,9 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
 
         Bundle argsUsersTab = new Bundle();
         tabsAdapter.addTab(SearchUsersFragment.class, argsUsersTab, getResources().getString(R.string.users_tab_title));
+
+        Bundle argsSkillsTab = new Bundle();
+        tabsAdapter.addTab(SearchUsersBySkillsFragment.class, argsSkillsTab, getResources().getString(R.string.skills_tab_title));
 
         viewPager.setAdapter(tabsAdapter);
         tabLayout.setupWithViewPager(viewPager);

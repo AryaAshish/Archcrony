@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
@@ -69,6 +70,8 @@ public class PostInteractor {
 
     private DatabaseHelper databaseHelper;
     private Context context;
+
+    String adminUid;
 
     public static PostInteractor getInstance(Context context) {
         if (instance == null) {
@@ -157,6 +160,77 @@ public class PostInteractor {
             public void onCancelled(DatabaseError databaseError) {
                 LogUtil.logError(TAG, "getPostList(), onCancelled", new Exception(databaseError.getMessage()));
                 onDataChangedListener.onCanceled(context.getString(R.string.permission_denied_error));
+            }
+        });
+    }
+
+    public void getAdminPostList(final OnPostListChangedListener<Post> onDataChangedListener, long date) {
+
+        FirebaseDatabase.getInstance().getReference("profiles").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+
+                    if ("RiftAdmin".equals(dataSnapshot1.child("username").getValue(String.class))){
+
+                        adminUid = dataSnapshot1.getKey();
+
+                    }
+
+                }
+
+                DatabaseReference databaseReference = databaseHelper.getDatabaseReference().child(DatabaseHelper.POSTS_DB_KEY);
+                Query postsQuery;
+                if (date == 0) {
+                    postsQuery = databaseReference.limitToLast(Constants.Post.POST_AMOUNT_ON_PAGE).orderByChild("createdDate");
+                } else {
+                    postsQuery = databaseReference.limitToLast(Constants.Post.POST_AMOUNT_ON_PAGE).endAt(date).orderByChild("createdDate");
+                }
+
+                postsQuery.keepSynced(true);
+                postsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        List<Post> postList = new ArrayList<>();
+
+                        for (DataSnapshot snapshot:dataSnapshot.getChildren()){
+
+                            if (adminUid.equals(snapshot.child("authorId").getValue(String.class))){
+
+                                Post post = snapshot.getValue(Post.class);
+                                post.setId(snapshot.getKey());
+
+                                postList.add(post);
+
+                            }
+
+                        }
+
+                        PostListResult result = new PostListResult();
+
+                        result.setPosts(postList);
+
+                        if (result.getPosts().isEmpty() && result.isMoreDataAvailable()) {
+                            getAdminPostList(onDataChangedListener, result.getLastItemCreatedDate() - 1);
+                        } else {
+                            onDataChangedListener.onListChanged(result);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        LogUtil.logError(TAG, "getPostList(), onCancelled", new Exception(databaseError.getMessage()));
+                        onDataChangedListener.onCanceled(context.getString(R.string.permission_denied_error));
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
@@ -296,8 +370,6 @@ public class PostInteractor {
 
     private boolean isPostValid(Map<String, Object> post) {
         return post.containsKey("title")
-                && post.containsKey("description")
-                && post.containsKey("imageTitle")
                 && post.containsKey("authorId")
                 && post.containsKey("description");
     }
@@ -361,6 +433,7 @@ public class PostInteractor {
 
     public void createOrUpdatePostWithImage(Uri imageUri, final OnPostCreatedListener onPostCreatedListener, final Post post) {
         // Register observers to listen for when the download is done or if it fails
+
         DatabaseHelper databaseHelper = ApplicationHelper.getDatabaseHelper();
         if (post.getId() == null) {
             post.setId(generatePostId());
@@ -383,6 +456,20 @@ public class PostInteractor {
                 onPostCreatedListener.onPostSaved(true);
             });
         }
+
+    }
+
+    public void createPost(final OnPostCreatedListener onPostCreatedListener, final Post post){
+
+        if (post.getId() == null) {
+            post.setId(generatePostId());
+        }
+
+        post.setImageTitle("");
+        createOrUpdatePost(post);
+
+        onPostCreatedListener.onPostSaved(true);
+
     }
 
     public void createOrUpdateLike(final String postId, final String postAuthorId) {
