@@ -6,7 +6,7 @@ This application is a pattern of social components comprising posts, likes, comm
 
 ### Current build 
 
-The latest app version is available on [Google Play](https://play.google.com/store/apps/details?id=architectica.socialcomponents)
+The latest app version is available on [Google Play](https://play.google.com/store/apps/details?id=com.architectica.socialcomponents)
 
  <!-- ### Full showcase of application -->
 
