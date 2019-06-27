@@ -6,7 +6,7 @@ This application is a pattern of social components comprising posts, likes, comm
 
 ### Current build 
 
-The latest app version is available on [Google Play](https://play.google.com/store/apps/details?id=architectica.socialcomponents)
+The latest app version is available on [Google Play](https://play.google.com/store/apps/details?id=com.architectica.socialcomponents)
 
  <!-- ### Full showcase of application -->
 
@@ -81,7 +81,7 @@ Implemented elements and features:
 * Refresh a screen
 * Loading posts by parts (Progress bar in the bottom of the screen for loading the next portion of posts)
 
-![main_screen](https://cloud.githubusercontent.com/assets/2683612/24905715/849ca6d2-1ebd-11e7-8684-2568c9f665ad.gif)
+![main_screen]()
 
 ---
 
@@ -92,7 +92,7 @@ Implemented elements and effects:
 * Facebook Sign-In
 * Google Sign-In
 
-![login_screen](https://cloud.githubusercontent.com/assets/2683612/24905279/0c8b9dd4-1ebc-11e7-860f-46a83eb71f80.gif)
+![login_screen]()
 
 ---
 
@@ -105,7 +105,7 @@ Implemented elements and features:
 * Pick image or take photo
 * Manage App Permissions on Android 6.0
 
-![create_profile](https://cloud.githubusercontent.com/assets/2683612/24905276/0c87f382-1ebc-11e7-8587-9ff4af64f3cf.gif)
+![create_profile]()
 
 ---
 
@@ -117,7 +117,7 @@ Implemented elements and features:
 * Pick image or take photo
 * Manage App Permissions on Android 6.0
 
-![create_post](https://cloud.githubusercontent.com/assets/2683612/24905275/0c8727a4-1ebc-11e7-94a4-0d9a3d419748.gif)
+![create_post]()
 
 ---
 
@@ -133,7 +133,7 @@ Implemented elements and features:
 * Add complain for the post
 * Page is updated in real time
 
-![post_detail](https://cloud.githubusercontent.com/assets/2683612/24911820/f25559a0-1ed4-11e7-972f-aaf93c8c63b3.gif)
+![post_detail]()
 
 ---
 
@@ -143,7 +143,7 @@ Implemented elements and features:
 
 * Zooming image
 
-![image_detail](https://cloud.githubusercontent.com/assets/2683612/24905278/0c8b031a-1ebc-11e7-86f9-c7b3ec276d63.gif)
+![image_detail]()
 
 ---
 
@@ -155,7 +155,7 @@ Implemented elements and features:
 * Collapse / expand text of large comment
 * Date of a comment
 
-![comments](https://cloud.githubusercontent.com/assets/2683612/24905274/0c849db8-1ebc-11e7-9407-bdfa25c3a818.gif)
+![comments]()
 
 ---
 
@@ -172,7 +172,7 @@ Implemented elements and features:
     * edit profile
     * create a post
 
-![profile](https://cloud.githubusercontent.com/assets/2683612/24905714/849c725c-1ebd-11e7-9533-a3ae31cb066d.gif)
+![profile]()
 
 ---
 
@@ -185,7 +185,7 @@ Implemented elements and features:
 * Possibility to add like by click on “like” button
 * Animation of like button
 
-![counters_panel](https://cloud.githubusercontent.com/assets/2683612/24905991/ae28f824-1ebe-11e7-8f9a-91cd988f0b07.jpg)
+![counters_panel]()
 
 ---
 
@@ -198,6 +198,6 @@ Implemented elements and features:
 * Pick image or take photo
 * Manage App Permissions on Android 6.0
 
-![edit_profile](https://cloud.githubusercontent.com/assets/2683612/24905277/0c89a1dc-1ebc-11e7-912e-8ffbb6223e52.gif)
+![edit_profile]()
 
 The Social App is a Minimum Viable Product intended for building social features for an Android application. It is free to use for other developers. Though, our team is ready to create a mobile application for you implementing any social features you need, along with GPS-navigation functions, and an offline mode. Contact us to know more.
