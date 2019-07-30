@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
+    android:background="@color/primary"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="@dimen/large_intrinsic_padding">
@@ -20,19 +20,37 @@
         tools:src="@drawable/ic_stub"
         tools:targetApi="lollipop" />
 
-    <TextView
-        android:id="@+id/nameTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/intrinsic_padding"
-        android:layout_marginStart="@dimen/intrinsic_padding"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
         android:layout_weight="1"
-        android:textAppearance="@style/TextAppearance.Title"
-        tools:text="John Smith " />
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/intrinsic_padding"
+            android:layout_marginEnd="@dimen/intrinsic_padding"
+            android:textAppearance="@style/TextAppearance.Title"
+            tools:text="username" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/intrinsic_padding"
+            android:layout_marginEnd="@dimen/intrinsic_padding"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            tools:text="John Smith " />
+    </LinearLayout>
 
     <com.architectica.socialcomponents.views.FollowButton
         android:id="@+id/followButton"
         style="@style/FollowButton"
+        android:layout_weight="0.01"
         android:visibility="invisible"
         tools:text="Follow back" />
 

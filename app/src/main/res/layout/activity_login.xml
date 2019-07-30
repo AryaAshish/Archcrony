@@ -7,10 +7,6 @@
     android:theme="@style/Login"
     tools:context="com.architectica.socialcomponents.main.login.LoginActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
 
         <LinearLayout
             android:id="@+id/buttonsContainer"
@@ -152,8 +148,6 @@
                     android:src="@drawable/logoblue" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
-
-    </ScrollView>
 
 </RelativeLayout>
 

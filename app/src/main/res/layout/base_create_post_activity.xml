@@ -114,6 +114,7 @@
                         android:id="@+id/descriptionEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/light_gray"
                         android:gravity="start"
                         android:hint="@string/hint_description"
                         android:inputType="textMultiLine"
