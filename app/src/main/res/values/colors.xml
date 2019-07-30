@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#0097D3</color>
-    <color name="primary_dark">#005B7F</color>
+    <color name="primary">#FFFFFF</color>
+    <color name="primary_dark">#EEEEEE</color>
     <color name="primary_light">#D7CCC8</color>
     <color name="dart_transparent">#81000000</color>
 
     <color name="colorCardView">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="whiteTransparent">#DCFFFFFF</color>
+
+    <color name="AppTheme_lightest">#4C41FF</color>
+    <color name="AppTheme_light">#352FC4</color>
+    <color name="AppTheme">#2C269f</color>
+    <color name="AppTheme_trans">#992C269F</color>
+
 
     <color name="colorPrimary">#ea474a</color>
     <color name="colorPrimaryDark">#cf2a2d</color>
@@ -14,8 +23,6 @@
     <color name="colorBackground">#f9f9fa</color>
     <color name="colorTextSubtitle">#4e4e4e</color>
     <color name="colorTextTitle">#262626</color>
-
-    <color name="color_home">#009688</color>
 
     <color name="color_search">#2196F3</color>
 

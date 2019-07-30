@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_intrinsic_padding"
         android:clickable="true"
+        android:backgroundTint="@color/AppTheme"
         android:src="@drawable/ic_add_white_48dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"/>

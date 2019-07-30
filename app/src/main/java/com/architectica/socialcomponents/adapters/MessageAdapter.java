@@ -1,11 +1,8 @@
 package com.architectica.socialcomponents.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +14,7 @@ import com.architectica.socialcomponents.R;
 import com.architectica.socialcomponents.model.Messages;
 import com.architectica.socialcomponents.views.CircularImageView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +33,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     private List<Messages> mMessageList;
     private DatabaseReference mUserDatabase;
     private Activity activity;
+    public static final int MSG_TYPE_LEFT = 0;
+    public static final int MSG_TYPE_RIGHT = 1;
 
     public MessageAdapter(Activity activity,List<Messages> mMessageList) {
 
@@ -46,10 +46,19 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.message_single_layout ,parent, false);
+//        View v = LayoutInflater.from(parent.getContext())
+//                .inflate(R.layout.message_left_layout, parent, false);
+//        return new MessageViewHolder(v);
 
-        return new MessageViewHolder(v);
+        if (viewType == MSG_TYPE_RIGHT) {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.message_right_layout, parent, false);
+            return new MessageViewHolder(v);
+        } else {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.message_left_layout, parent, false);
+            return new MessageViewHolder(v);
+        }
 
     }
 
@@ -140,4 +149,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         return mMessageList.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mMessageList.get(position).getFrom().equals(firebaseUser.getUid())) {
+            return MSG_TYPE_RIGHT;
+        } else {
+            return MSG_TYPE_LEFT;
+
+        }
+    }
 }

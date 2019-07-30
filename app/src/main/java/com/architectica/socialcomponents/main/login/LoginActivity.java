@@ -17,8 +17,10 @@
 package com.architectica.socialcomponents.main.login;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -62,6 +64,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
 
         initGoogleSignIn();
         initFirebaseAuth();

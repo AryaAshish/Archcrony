@@ -46,6 +46,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.architectica.socialcomponents.views.CircularImageView;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
@@ -71,24 +72,15 @@ public class EditProfileActivity<V extends EditProfileView, P extends EditProfil
 
     // UI references.
     private EditText nameEditText,uriEditText,bioEditText,phoneNumberEditText,mEditTextSixDigitCode;
-
     Button verify,verifyPhone,browseUrl;
-
     private AutoCompleteTextView usertype1,skillEditText,startUpTypeEditText;
-
-    protected ImageView imageView;
+    protected CircularImageView imageView;
     private ProgressBar avatarProgressBar;
-
     public String[] userTypes = {"Startup","Intern","Others"};
-
     public String[] skillTypes = {"Android Development(Java)","Android Development(Kotlin)","Web Development(MEAN Stack)","Web Development(MARN Stack)","Web Development","Business Development","Content Writing","Campus Ambassadors","IOS Development","Hybrid App Development"};
-
     private String phoneVerifyId;
-
     PhoneAuthProvider.ForceResendingToken resendingToken;
-
     LinearLayout verifyLayout;
-
     ProgressDialog pd;
 
     int i = 1;
@@ -99,6 +91,8 @@ public class EditProfileActivity<V extends EditProfileView, P extends EditProfil
         setContentView(R.layout.activity_edit_profile);
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black);
+
         }
 
         startUpTypeEditText = findViewById(R.id.startUpType);
@@ -507,7 +501,7 @@ public class EditProfileActivity<V extends EditProfileView, P extends EditProfil
     @Override
     public void setNameError(@Nullable String string) {
         nameEditText.setError(string);
-        nameEditText.requestFocus();
+//        nameEditText.requestFocus();
     }
 
     @Override

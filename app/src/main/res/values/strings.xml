@@ -31,7 +31,7 @@
     <string name="channel_description">Archcrony notifications</string>
 
     <string name="hint_title">Title</string>
-    <string name="hint_description">Description</string>
+    <string name="hint_description">Write description about your post...</string>
 
     <string name="message_post_was_created">Post was created</string>
     <string name="error_fail_create_post">Fail to create post</string>

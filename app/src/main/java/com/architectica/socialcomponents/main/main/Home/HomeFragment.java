@@ -267,6 +267,10 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         recyclerView.setAdapter(postsAdapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setDrawingCacheEnabled(true);
+        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         postsAdapter.loadFirstPage();
     }
 

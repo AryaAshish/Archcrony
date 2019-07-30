@@ -18,6 +18,7 @@
 package com.architectica.socialcomponents.adapters.holders;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -94,6 +95,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
         profileManager = ProfileManager.getInstance(context.getApplicationContext());
         postManager = PostManager.getInstance(context.getApplicationContext());
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         view.setOnClickListener(v -> {
             int position = getAdapterPosition();
@@ -121,15 +123,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     public void bindData(Post post) {
 
         if (post.getImageTitle().equals("")){
-
             postImageView.setVisibility(View.GONE);
-
         }
         else {
-
             postImageView.setVisibility(View.VISIBLE);
             postManager.loadImageMediumSize(GlideApp.with(baseActivity), post.getImageTitle(), postImageView);
-
         }
 
         likeController = new LikeController(context, post, likeCounterTextView, likesImageView, true);
