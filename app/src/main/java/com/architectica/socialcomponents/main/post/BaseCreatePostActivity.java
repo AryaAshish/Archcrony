@@ -19,12 +19,17 @@ package com.architectica.socialcomponents.main.post;
 import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.architectica.socialcomponents.R;
 import com.architectica.socialcomponents.main.pickImageBase.PickImageActivity;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Alexey on 03.05.18.
@@ -36,14 +41,18 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
     protected ProgressBar progressBar;
     protected EditText titleEditText;
     protected EditText descriptionEditText;
+    protected TextView uploadTxt;
+    protected RelativeLayout imageContainer;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_create_post_activity);
+
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black);
         }
 
         titleEditText = findViewById(R.id.titleEditText);
@@ -51,8 +60,10 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
         progressBar = findViewById(R.id.progressBar);
 
         imageView = findViewById(R.id.imageView);
+        uploadTxt = findViewById(R.id.uploadtxt);
+        imageContainer = findViewById(R.id.imageContainer);
 
-        imageView.setOnClickListener(v -> onSelectImageClick(v));
+        imageContainer.setOnClickListener(v -> onSelectImageClick(v));
 
         titleEditText.setOnTouchListener((v, event) -> {
             if (titleEditText.hasFocus() && titleEditText.getError() != null) {
@@ -76,6 +87,8 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
 
     @Override
     protected void onImagePikedAction() {
+        imageView.setAlpha((float) 1.0);
+        uploadTxt.setVisibility(View.INVISIBLE);
         loadImageToImageView(imageUri);
     }
 

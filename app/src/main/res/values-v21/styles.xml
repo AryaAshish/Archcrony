@@ -20,13 +20,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/AppTheme_light</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowEnterTransition">@transition/exclude_system_panel_animation</item>
         <item name="actionModeBackground">@color/primary</item>
+    </style>
+
+    <style name="Login" parent="AppCompat.NoActionBar">
+        <item name="android:navigationBarColor">@color/AppTheme</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 
 </resources>

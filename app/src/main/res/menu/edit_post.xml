@@ -5,6 +5,7 @@
     <item
         android:id="@+id/save"
         android:title="@string/button_title_save"
-        app:showAsAction="always"
+        android:icon="@drawable/ic_done_black"
+        app:showAsAction="always|withText"
         android:orderInCategory="1" />
 </menu>

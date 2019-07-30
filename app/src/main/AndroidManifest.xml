@@ -14,7 +14,7 @@
     <application
         android:name=".Application"
         android:allowBackup="true"
-        android:icon="@mipmap/rift"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -48,7 +48,7 @@
         <activity
             android:name=".main.login.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/AppCompat.NoActionBar" />
+            android:theme="@style/Login" />
         <activity
             android:name=".main.editProfile.createProfile.CreateProfileActivity"
             android:configChanges="orientation|screenSize"

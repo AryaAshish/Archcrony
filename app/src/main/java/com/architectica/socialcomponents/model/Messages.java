@@ -2,7 +2,7 @@ package com.architectica.socialcomponents.model;
 
 public class Messages {
 
-    private String message,type;
+    private String message, type;
 
     private String from;
 
@@ -39,7 +39,7 @@ public class Messages {
         this.type = type;
     }
 
-    public Messages(){
+    public Messages() {
 
     }
 
