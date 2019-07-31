@@ -151,18 +151,19 @@ public class SearchPostsFragment extends BaseFragment<SearchPostsView, SearchPos
     public void openProfileActivity(String userId, View view) {
         Intent intent = new Intent(getActivity(), ProfileActivity.class);
         intent.putExtra(ProfileActivity.USER_ID_EXTRA_KEY, userId);
+        startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && view != null) {
-
-            View authorImageView = view.findViewById(R.id.authorImageView);
-
-            ActivityOptions options = ActivityOptions.
-                    makeSceneTransitionAnimation(getActivity(),
-                            new android.util.Pair<>(authorImageView, getString(R.string.post_author_image_transition_name)));
-            startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST, options.toBundle());
-        } else {
-            startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST);
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && view != null) {
+//
+//            View authorImageView = view.findViewById(R.id.authorImageView);
+//
+//            ActivityOptions options = ActivityOptions.
+//                    makeSceneTransitionAnimation(getActivity(),
+//                            new android.util.Pair<>(authorImageView, getString(R.string.post_author_image_transition_name)));
+//            startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST, options.toBundle());
+//        } else {
+//            startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST);
+//        }
     }
 
 

@@ -131,18 +131,19 @@ public class SearchUsersBySkillsFragment extends BaseFragment<SearchUsersView, S
     private void openProfileActivity(String userId, View view) {
         Intent intent = new Intent(getActivity(), ProfileActivity.class);
         intent.putExtra(ProfileActivity.USER_ID_EXTRA_KEY, userId);
+        startActivityForResult(intent, UPDATE_FOLLOWING_STATE_REQ);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && view != null) {
-
-            ImageView imageView = view.findViewById(R.id.photoImageView);
-
-            ActivityOptions options = ActivityOptions.
-                    makeSceneTransitionAnimation(getActivity(),
-                            new android.util.Pair<>(imageView, getString(R.string.post_author_image_transition_name)));
-            startActivityForResult(intent, UPDATE_FOLLOWING_STATE_REQ, options.toBundle());
-        } else {
-            startActivityForResult(intent, UPDATE_FOLLOWING_STATE_REQ);
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && view != null) {
+//
+//            ImageView imageView = view.findViewById(R.id.photoImageView);
+//
+//            ActivityOptions options = ActivityOptions.
+//                    makeSceneTransitionAnimation(getActivity(),
+//                            new android.util.Pair<>(imageView, getString(R.string.post_author_image_transition_name)));
+//            startActivityForResult(intent, UPDATE_FOLLOWING_STATE_REQ, options.toBundle());
+//        } else {
+//            startActivityForResult(intent, UPDATE_FOLLOWING_STATE_REQ);
+//        }
     }
 
     @Override
