@@ -350,16 +350,17 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
     public void openProfileActivity(String userId, View view) {
         Intent intent = new Intent(PostDetailsActivity.this, ProfileActivity.class);
         intent.putExtra(ProfileActivity.USER_ID_EXTRA_KEY, userId);
+        startActivity(intent);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && view != null) {
-
-            ActivityOptions options = ActivityOptions.
-                    makeSceneTransitionAnimation(PostDetailsActivity.this,
-                            new android.util.Pair<>(view, getString(R.string.post_author_image_transition_name)));
-            startActivity(intent, options.toBundle());
-        } else {
-            startActivity(intent);
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && view != null) {
+//
+//            ActivityOptions options = ActivityOptions.
+//                    makeSceneTransitionAnimation(PostDetailsActivity.this,
+//                            new android.util.Pair<>(view, getString(R.string.post_author_image_transition_name)));
+//            startActivity(intent, options.toBundle());
+//        } else {
+//            startActivity(intent);
+//        }
     }
 
     @Override

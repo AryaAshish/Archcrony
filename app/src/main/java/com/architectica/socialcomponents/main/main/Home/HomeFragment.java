@@ -265,7 +265,7 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+       // ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         recyclerView.setAdapter(postsAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(20);
@@ -364,18 +364,19 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
     public void openProfileActivity(String userId, View view) {
         Intent intent = new Intent(getActivity(), ProfileActivity.class);
         intent.putExtra(ProfileActivity.USER_ID_EXTRA_KEY, userId);
+        startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && view != null) {
-
-            View authorImageView = view.findViewById(R.id.authorImageView);
-
-            ActivityOptions options = ActivityOptions.
-                    makeSceneTransitionAnimation(getActivity(),
-                            new android.util.Pair<>(authorImageView, getString(R.string.post_author_image_transition_name)));
-            startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST, options.toBundle());
-        } else {
-            startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST);
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && view != null) {
+//
+//            View authorImageView = view.findViewById(R.id.authorImageView);
+//
+//            ActivityOptions options = ActivityOptions.
+//                    makeSceneTransitionAnimation(getActivity(),
+//                            new android.util.Pair<>(authorImageView, getString(R.string.post_author_image_transition_name)));
+//            startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST, options.toBundle());
+//        } else {
+ //           startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST);
+   //     }
     }
 
 }
