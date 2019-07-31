@@ -41,7 +41,7 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
 
-    <color name="custom_divider_color">#dfdfdf</color>
+    <color name="custom_divider_color">#F3F3F3</color>
     <color name="highlight_text">#17a1d7</color>
 
     <color name="send_button_color">@color/primary</color>
