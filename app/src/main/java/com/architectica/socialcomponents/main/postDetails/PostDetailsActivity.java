@@ -151,26 +151,26 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
 
         sendButton = findViewById(R.id.sendButton);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isAuthorAnimationRequired) {
-            authorImageView.setScaleX(0);
-            authorImageView.setScaleY(0);
-
-            // Add a listener to get noticed when the transition ends to animate the fab button
-            getWindow().getSharedElementEnterTransition().addListener(new CustomTransitionListener() {
-                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-                @Override
-                public void onTransitionEnd(Transition transition) {
-                    super.onTransitionEnd(transition);
-                    //disable execution for exit transition
-                    if (!isEnterTransitionFinished) {
-                        isEnterTransitionFinished = true;
-                        com.architectica.socialcomponents.utils.AnimationUtils.showViewByScale(authorImageView)
-                                .setListener(authorAnimatorListener)
-                                .start();
-                    }
-                }
-            });
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isAuthorAnimationRequired) {
+//            authorImageView.setScaleX(0);
+//            authorImageView.setScaleY(0);
+//
+//            // Add a listener to get noticed when the transition ends to animate the fab button
+//            getWindow().getSharedElementEnterTransition().addListener(new CustomTransitionListener() {
+//                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//                @Override
+//                public void onTransitionEnd(Transition transition) {
+//                    super.onTransitionEnd(transition);
+//                    //disable execution for exit transition
+//                    if (!isEnterTransitionFinished) {
+//                        isEnterTransitionFinished = true;
+//                        com.architectica.socialcomponents.utils.AnimationUtils.showViewByScale(authorImageView)
+//                                .setListener(authorAnimatorListener)
+//                                .start();
+//                    }
+//                }
+//            });
+//        }
 
         initRecyclerView();
         initListeners();
