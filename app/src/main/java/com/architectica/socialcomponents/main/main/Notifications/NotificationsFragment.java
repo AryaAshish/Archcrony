@@ -118,7 +118,9 @@ public class NotificationsFragment extends BaseFragment<NotificationsView,Notifi
         postsAdapter.setCallback(new NotificationsAdapter.Callback() {
             @Override
             public void onItemClick(final Post post, final View view) {
-                presenter.onPostClicked(post, view);
+                openPostDetailsActivity(post, view);
+//                presenter.onPostClicked(post, view);
+
             }
 
             @Override

@@ -35,6 +35,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -97,6 +98,7 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
     private TextView followersCounterTextView;
     private TextView followingsCounterTextView;
     private FollowButton followButton;
+    private Button editProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +134,7 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
         postsProgressBar = findViewById(R.id.postsProgressBar);
         followButton = findViewById(R.id.followButton);
         swipeContainer = findViewById(R.id.swipeContainer);
+        editProfile = findViewById(R.id.editProfile);
 
         initListeners();
 
@@ -139,6 +142,7 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
 
         loadPostsList();
         supportPostponeEnterTransition();
+
     }
 
     @Override
@@ -198,9 +202,11 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
     }
 
     private void initListeners() {
+
         followButton.setOnClickListener(v -> {
             presenter.onFollowButtonClick(followButton.getState(), userID);
         });
+
 
         followingsCounterTextView.setOnClickListener(v -> {
             startUsersListActivity(UsersListType.FOLLOWINGS);
@@ -264,7 +270,7 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
 
             View imageView = v.findViewById(R.id.postImageView);
 
-            if (imageView.getVisibility() != View.GONE){
+            if (imageView.getVisibility() != View.GONE) {
 
                 ActivityOptions options = ActivityOptions.
                         makeSceneTransitionAnimation(ProfileActivity.this,
@@ -272,8 +278,7 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
                         );
                 startActivityForResult(intent, PostDetailsActivity.UPDATE_POST_REQUEST, options.toBundle());
 
-            }
-            else {
+            } else {
 
                 startActivityForResult(intent, PostDetailsActivity.UPDATE_POST_REQUEST);
 
@@ -331,13 +336,12 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
 
     @Override
     public void setStatus(String status) {
-        if ("Not Hired".equals(status)){
+        if ("Not Hired".equals(status)) {
 
             statusTextView.setText(status);
             statusTextView.setTextColor(getResources().getColor(R.color.red));
 
-        }
-        else if ("Hired".equals(status)){
+        } else if ("Hired".equals(status)) {
 
             statusTextView.setText(status);
             statusTextView.setTextColor(getResources().getColor(R.color.green));

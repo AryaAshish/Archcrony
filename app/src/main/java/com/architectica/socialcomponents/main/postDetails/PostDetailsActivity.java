@@ -115,6 +115,8 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
     private boolean isEnterTransitionFinished = false;
     private Button sendButton;
 
+    private RelativeLayout imageContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +150,8 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
         dateTextView = findViewById(R.id.dateTextView);
         commentsProgressBar = findViewById(R.id.commentsProgressBar);
         warningCommentsTextView = findViewById(R.id.warningCommentsTextView);
+
+        imageContainer = findViewById(R.id.imageContainer);
 
         sendButton = findViewById(R.id.sendButton);
 
@@ -212,17 +216,17 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
 
     @Override
     public void onBackPressed() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && isAuthorAnimationRequired
-                && !authorAnimationInProgress
-                && !AnimationUtils.isViewHiddenByScale(authorImageView)) {
-
-            ViewPropertyAnimator hideAuthorAnimator = com.architectica.socialcomponents.utils.AnimationUtils.hideViewByScale(authorImageView);
-            hideAuthorAnimator.setListener(authorAnimatorListener);
-            hideAuthorAnimator.withEndAction(PostDetailsActivity.this::onBackPressed);
-        } else {
+//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+//                && isAuthorAnimationRequired
+//                && !authorAnimationInProgress
+//                && !AnimationUtils.isViewHiddenByScale(authorImageView)) {
+//
+//            ViewPropertyAnimator hideAuthorAnimator = com.architectica.socialcomponents.utils.AnimationUtils.hideViewByScale(authorImageView);
+//            hideAuthorAnimator.setListener(authorAnimatorListener);
+//            hideAuthorAnimator.withEndAction(PostDetailsActivity.this::onBackPressed);
+//        } else {
             super.onBackPressed();
-        }
+//        }
     }
 
     private void initListeners() {
@@ -377,8 +381,8 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
     public void loadPostDetailImage(String imageTitle) {
 
         if (imageTitle.equals("")){
-
-            postImageView.setImageResource(R.drawable.noimage);
+            imageContainer.setVisibility(View.GONE);
+//            postImageView.setImageResource(R.drawable.noimage);
 
         }
         else {

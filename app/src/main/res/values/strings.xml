@@ -53,7 +53,7 @@
     <string name="error_post_was_removed">Post was removed</string>
     <string name="confirm_deletion_post">Delete this post?</string>
 
-    <string name="comment_text_hint">Enter your comment …</string>
+    <string name="comment_text_hint">Enter your comment...</string>
     <string name="button_post_comment">Post comment</string>
 
     <string name="label_comments">Comments (%1$d):</string>
