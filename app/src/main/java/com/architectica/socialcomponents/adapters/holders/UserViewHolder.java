@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.architectica.socialcomponents.main.main.Profile.ProfilePresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.architectica.socialcomponents.R;
 import com.architectica.socialcomponents.enums.FollowState;

@@ -24,12 +24,14 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.TextAppearanceSpan;
 import android.view.View;
+import android.widget.Toast;
 
 import com.architectica.socialcomponents.R;
 import com.architectica.socialcomponents.enums.FollowState;
 import com.architectica.socialcomponents.enums.PostStatus;
 import com.architectica.socialcomponents.main.base.BasePresenter;
 import com.architectica.socialcomponents.main.base.BaseView;
+import com.architectica.socialcomponents.main.editProfile.EditProfileActivity;
 import com.architectica.socialcomponents.main.postDetails.PostDetailsActivity;
 import com.architectica.socialcomponents.managers.FollowManager;
 import com.architectica.socialcomponents.managers.PostManager;
@@ -51,6 +53,7 @@ class ProfilePresenter extends BasePresenter<ProfileView> {
     private ProfileManager profileManager;
 
     private Profile profile;
+    int s;
 
     ProfilePresenter(Activity activity) {
         super(activity);
@@ -95,6 +98,7 @@ class ProfilePresenter extends BasePresenter<ProfileView> {
             }
         }
     }
+
 
     public void checkFollowState(String targetUserId) {
         String currentUserId = getCurrentUserId();
@@ -193,7 +197,7 @@ class ProfilePresenter extends BasePresenter<ProfileView> {
             view.hideLoadingPostsProgress();
 
         });
-        }
+    }
 
     public void checkPostChanges(Intent data) {
         ifViewAttached(view -> {

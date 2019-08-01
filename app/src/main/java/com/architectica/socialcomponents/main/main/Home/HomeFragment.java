@@ -45,7 +45,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import static android.app.Activity.RESULT_OK;
 
-public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implements HomeView{
+public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implements HomeView {
 
     private PostsAdapter postsAdapter;
     private RecyclerView recyclerView;
@@ -56,7 +56,7 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
     private ProgressBar progressBar;
     private SwipeRefreshLayout swipeContainer;
 
-    public HomeFragment(){
+    public HomeFragment() {
 
         setHasOptionsMenu(true);
 
@@ -98,16 +98,16 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    if ("RiftAdmin".equals(snapshot.child("username").getValue(String.class))){
+                    if ("RiftAdmin".equals(snapshot.child("username").getValue(String.class))) {
 
                         String mChatUser = snapshot.getKey();
                         String userName = "RiftAdmin";
 
                         Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
-                        chatIntent.putExtra("ChatUser",mChatUser);
-                        chatIntent.putExtra("UserName",userName);
+                        chatIntent.putExtra("ChatUser", mChatUser);
+                        chatIntent.putExtra("UserName", userName);
                         startActivity(chatIntent);
 
                     }
@@ -245,6 +245,7 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
             @Override
             public void onItemClick(final Post post, final View view) {
                 presenter.onPostClicked(post, view);
+//                openPostDetailsActivity(post, view);
             }
 
             @Override
@@ -265,7 +266,7 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-       // ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+        // ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         recyclerView.setAdapter(postsAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(20);
@@ -327,7 +328,7 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
             View imageView = v.findViewById(R.id.postImageView);
             View authorImageView = v.findViewById(R.id.authorImageView);
 
-            if (imageView.getVisibility() != View.GONE){
+            if (imageView.getVisibility() != View.GONE) {
 
                 ActivityOptions options = ActivityOptions.
                         makeSceneTransitionAnimation(getActivity(),
@@ -337,8 +338,7 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
 
                 startActivityForResult(intent, PostDetailsActivity.UPDATE_POST_REQUEST, options.toBundle());
 
-            }
-            else {
+            } else {
 
                 startActivityForResult(intent, PostDetailsActivity.UPDATE_POST_REQUEST);
 
@@ -375,8 +375,8 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
 //                            new android.util.Pair<>(authorImageView, getString(R.string.post_author_image_transition_name)));
 //            startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST, options.toBundle());
 //        } else {
- //           startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST);
-   //     }
+        //           startActivityForResult(intent, ProfileActivity.CREATE_POST_FROM_PROFILE_REQUEST);
+        //     }
     }
 
 }

@@ -43,6 +43,7 @@
         android:background="@color/primary"
         app:itemIconTint="@drawable/bottom_navigation_selection"
         app:itemTextColor="@drawable/bottom_navigation_selection"
-        design:menu="@menu/bottom_nav_menu" />
+        design:menu="@menu/bottom_nav_menu"
+        tools:targetApi="lollipop" />
 
 </LinearLayout>

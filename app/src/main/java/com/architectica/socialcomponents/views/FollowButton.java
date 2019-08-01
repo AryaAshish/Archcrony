@@ -19,6 +19,7 @@ package com.architectica.socialcomponents.views;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.widget.Button;
 
 import com.architectica.socialcomponents.R;
 import com.architectica.socialcomponents.enums.FollowState;
@@ -30,7 +31,7 @@ public class FollowButton extends android.support.v7.widget.AppCompatButton {
     public static final int FOLLOW_STATE = 1;
     public static final int FOLLOW_BACK_STATE = 2;
     public static final int FOLLOWING_STATE = 3;
-    public static final int INVISIBLE_STATE = -1;
+    public static final int INVISIBLE_STATE = 4;
 
     private int state;
 
@@ -109,8 +110,10 @@ public class FollowButton extends android.support.v7.widget.AppCompatButton {
             }
 
             case INVISIBLE_STATE: {
-                setVisibility(INVISIBLE);
-                setClickable(false);
+                setVisibility(VISIBLE);
+                setText("Edit Profile");
+                setBackground(ContextCompat.getDrawable(getContext(), R.drawable.follow_button_dark_bg));
+                setTextColor(ContextCompat.getColor(getContext(), R.color.white));
                 break;
             }
         }
